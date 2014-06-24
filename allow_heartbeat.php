@@ -3,7 +3,7 @@
  * Plugin Name: WPE Allow Heartbeat
  * Plugin URI: https://github.com/PrysPlugins/WPE-Allow-Heartbeat
  * Description: Allow the Heartbeat API in more places on WP Engine
- * Version: 1.0
+ * Version: 0.1.0
  * Author: Jeremy Pry, Jason Stallings
  * Author URI: http://jeremypry.com/
  * License: GPL2
