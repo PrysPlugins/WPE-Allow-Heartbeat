@@ -17,12 +17,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // create custom plugin settings menu
 add_action('admin_menu', 'wpeallowheartbeat_create_menu');
+add_filter( 'wpe_heartbeat_allowed_pages', 'wpeallowheartbeat_add_allowed_pages' );
+
+function wpeallowheartbeat_add_allowed_pages($heartbeat_allowed_pages)
+{
+	if (get_option('wpeallowheartbeat_pagelist'))
+	{
+		//Takes the comma separated list of pages, turns it into an array, then strips whitespace and removes blank entries.
+		$additional_pages=array_filter(array_map('trim', explode(",", get_option('wpeallowheartbeat_pagelist'))));
+		array_push($heartbeat_allowed_pages, $additional_pages);
+	}
+	return $heartbeat_allowed_pages;
+}
+
 
 function wpeallowheartbeat_create_menu() 
 {
 
 	//create new top-level menu
-	global $wpeallowheartbeat_settings_page;
 	$wpeallowheartbeat_settings_page=add_submenu_page('options-general.php', 'WPE Allow Heartbeat', 'WPE Allow Heartbeat', 'administrator', __FILE__, 'wpeallowheartbeat_settings_page');
 
 	//call register settings function
@@ -34,21 +46,9 @@ function register_wpeallowheartbeat_settings()
 {
 
 	//register our settings
-	register_setting( 'wpeallowheartbeat-settings-group', 'pagelist' );
+	register_setting( 'wpeallowheartbeat-settings-group', 'wpeallowheartbeat_pagelist' );
 }
 
-function wpeallowheartbeat_load_scripts($hook) 
-{
- 
-	global $wpeallowheartbeat_settings_page;
- 
-	if( $hook != $wpeallowheartbeat_settings_page ) 
-		return;
-
-	//I'll probably want to add some javascript to make the interface easier to use. 
-	//wp_enqueue_script( 'wpeallowheartbeat-js', plugins_url( '' , __FILE__ ) . '/js/functions.js' , array( 'jquery'));
-}
-add_action('admin_enqueue_scripts', 'wpeallowheartbeat_load_scripts');
 
 function wpeallowheartbeat_settings_page() 
 {
@@ -65,7 +65,7 @@ function wpeallowheartbeat_settings_page()
     		<table class="form-table">
         		<tr valign="top">
         			<th scope="row">List of pages with heartbeat enabled, comma seperated.</th>
-        			<td><input type="text" name="pagelist" value="<?php echo get_option('pagelist'); ?>" /></td>
+        			<td><input type="text" name="wpeallowheartbeat_pagelist" value="<?php echo get_option('wpeallowheartbeat_pagelist'); ?>" /></td>
         		</tr>
     		</table>
     
