@@ -30,8 +30,8 @@ function wpeallowheartbeat_add_allowed_pages( $heartbeat_allowed_pages ) {
 
 	if ( false !== $option ) {
 		// Takes the comma separated list of pages, turns it into an array, then strips whitespace and removes blank entries.
-		$additional_pages = array_filter( array_map( 'trim', explode( ',', $option ) ) );
-		array_merge( $heartbeat_allowed_pages, $additional_pages );
+		$additional_pages        = array_filter( array_map( 'trim', explode( ',', $option ) ) );
+		$heartbeat_allowed_pages = array_merge( $heartbeat_allowed_pages, $additional_pages );
 	}
 
 	return $heartbeat_allowed_pages;
