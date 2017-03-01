@@ -1,12 +1,13 @@
 <?php
 /**
- * Plugin Name: WPE Allow Heartbeat
- * Plugin URI: https://github.com/PrysPlugins/WPE-Allow-Heartbeat
- * Description: Allow the Heartbeat API in more places on WP Engine
- * Version: 0.2.0
- * Author: Jeremy Pry, Jason Stallings
- * Author URI: http://jeremypry.com/
- * License: GPL2
+ * Plugin Name:       WPE Allow Heartbeat
+ * Plugin URI:        https://github.com/PrysPlugins/WPE-Allow-Heartbeat
+ * Description:       Allow the Heartbeat API in more places on WP Engine
+ * Version:           0.3.0
+ * Author:            Jeremy Pry, Jason Stallings
+ * Author URI:        http://jeremypry.com/
+ * License:           GPL2
+ * GitHub Plugin URI: PrysPlugins/WPE-Allow-Heartbeat
  */
 
 // Prevent direct access to this file
