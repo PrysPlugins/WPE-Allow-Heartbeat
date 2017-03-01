@@ -79,8 +79,26 @@ function wpeallowheartbeat_settings_page() {
 		<h2>WPE Allow Heartbeat</h2>
 
 		<p>
-			Some details here about how to use this plugin.
+			As part of their techniques for managing resources in the Admin area of WordPress, WP Engine removes the
+			<a href="https://developer.wordpress.org/plugins/javascript/heartbeat-api/">Heartbeat API</a> from most of
+			the pages in the Admin area. The Heartbeat API has many purposes, but one of the primary purposes is in
+			maintaining an edit lock while a particular user is editing a post. Thus, WP Engine leaves the Heartbeat
+			API enabled on post edit pages.
 		</p>
+		<p>
+			If you need the Heartbeat API to be enabled on other pages, simply add those pages to the field below. It is
+			important to use the page name, which is typically the PHP file name. For example, to enable the Heartbeat
+			API on the Appearance > Themes page, enter <code>themes.php</code> in the field below. To enable the API
+			on the Options > General page, enter <code>options-general.php</code> in the field below.
+		</p>
+		<p>
+			The pages where WP Engine already allows the Heartbeat API by default are these:
+		</p>
+		<ul>
+			<li><code>edit.php</code> - Used for displaying all post types and editing individual posts </li>
+			<li><code>post-new.php</code> - Used for creating a new post.</li>
+			<li><code>post.php</code> - Used for submitting data for an edited post.</li>
+		</ul>
 
 		<form method="post" action="options.php">
 			<?php settings_fields( 'wpeallowheartbeat-settings-group' ); ?>
