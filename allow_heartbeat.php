@@ -72,7 +72,8 @@ function register_wpeallowheartbeat_settings() {
  * @author Jeremy Pry
  */
 function wpeallowheartbeat_settings_page() {
-	$option = esc_attr( get_option( 'wpeallowheartbeat_pagelist' ) );
+	$name   = 'wpeallowheartbeat_pagelist';
+	$option = get_option( $name );
 
 	?>
 	<div class="wrap">
@@ -106,12 +107,16 @@ function wpeallowheartbeat_settings_page() {
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row">
-						<label for="wpeallowheartbeat_pagelist">
-							List of pages with heartbeat enabled, comma seperated.
+						<label for="<?php echo esc_attr( $name ); ?>">
+							List of pages with heartbeat enabled, comma separated.
 						</label>
 					</th>
 					<td>
-						<input type="text" id="wpeallowheartbeat_pagelist" name="wpeallowheartbeat_pagelist" value="<?php echo $option ?>" />
+						<input type="text"
+							   class="widefat"
+							   id="<?php echo esc_attr( $name ); ?>"
+							   name="<?php echo esc_attr( $name ); ?>"
+							   value="<?php echo esc_attr( $option ); ?>" />
 					</td>
 				</tr>
 			</table>
